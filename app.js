@@ -45,15 +45,11 @@
             if (playerOne.isTurn === true) {
                 let row = prompt(`Select a row ${playerOne.name}!`);
                 let col = prompt(`Select a col ${playerOne.name}!`);
-                gameBoard.updateBoard(row, col, playerOne.symbol);
-                playerOne.playedPositions.push(`${row}${col}`);
-                this.checkForWinner(playerOne);
+                this.checkIfPositionAvailable(row, col, playerOne);
             } else {
                 let row = prompt(`Select a row ${playerTwo.name}!`);
                 let col = prompt(`Select a col ${playerTwo.name}!`);
-                gameBoard.updateBoard(row, col, playerTwo.symbol);
-                playerTwo.playedPositions.push(`${row}${col}`);
-                this.checkForWinner(playerTwo);
+                this.checkIfPositionAvailable(row, col, playerTwo);
             }
         },
         checkForWinner: function(player) {
@@ -69,7 +65,11 @@
                     }
                 }
                 if (isWinner === false) {
-                    this.changeTurns();
+                    if (playerOne.playedPositions.length === 5) {
+                        this.gameOver('Game tied');
+                    } else {
+                        this.changeTurns();
+                    }
                 } else {
                     this.gameOver(player);
                 }
@@ -85,11 +85,22 @@
             }
             this.playRound();
         },
-        checkIfPositionAvailable: function() {
-
+        checkIfPositionAvailable: function(row, col, player) {
+            if (gameBoard.board[row][col] != '') {
+                console.log('This position has already been played. Try again');
+                this.playRound();
+            } else {
+                gameBoard.updateBoard(row, col, player.symbol);
+                player.playedPositions.push(`${row}${col}`);
+                this.checkForWinner(player);
+            }
         },
         gameOver: function(player) {
-            console.log(`${player.name} has won!`);
+            if (player === 'Game tied') {
+                console.log('Game is a tie!');
+            } else {
+                console.log(`${player.name} has won!`);
+            }
         }
     }
 
