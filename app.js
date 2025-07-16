@@ -30,10 +30,14 @@
             }
         },
         updateBoard: function(row, col, symbol) {
+            const h1 = this.getCellH1(row, col);
+            h1.innerHTML = symbol;
+            this.render();
+        },
+        getCellH1: function(row, col) {
             const boardCell = document.querySelector(`#cell-${row}${col}`);
             const boardCellH1 = boardCell.querySelector('.cell-h1');
-            boardCellH1.innerHTML = symbol;
-            this.render();
+            return boardCellH1;
         }
     };
     
@@ -105,8 +109,9 @@
             }
         },
         checkIfPositionAvailable: function(row, col, player) {
-            if (gameBoard.board[row][col].innerHtml != undefined) {
-                console.log('This position has already been played. Try again');
+            const cellH1 = gameBoard.getCellH1(row, col);
+            if (cellH1.innerHTML === 'x' || cellH1.innerHTML === 'o') {
+                alert('This position has already been played. Try again');
             } else {
                 gameBoard.updateBoard(row, col, player.symbol);
                 player.playedPositions.push(`${row}${col}`);
@@ -115,11 +120,16 @@
         },
         gameOver: function(player) {
             if (player === 'Game tied') {
-                console.log('Game is a tie!');
+                alert('Game is a tie!');
             } else {
-                console.log(`${player.name} has won!`);
+                alert(`${player.name} has won!`);
             }
         }
     }
     game.init()
 })();
+
+// display player names and symbols
+// freeze board when player wins
+// change colors of names and symbols when winner
+    // change winner to name to green and winning three symbols to green
