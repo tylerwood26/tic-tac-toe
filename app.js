@@ -30,8 +30,6 @@
             }
         },
         updateBoard: function(row, col, symbol) {
-            // this.board[row][col].innerHtml = symbol;
-            // console.log(this.board[row][col]);
             const boardCell = document.querySelector(`#cell-${row}${col}`);
             const boardCellH1 = boardCell.querySelector('.cell-h1');
             boardCellH1.innerHTML = symbol;
