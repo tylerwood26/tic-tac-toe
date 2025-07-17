@@ -56,9 +56,30 @@
     const playerOne = createPlayer(getPlayerOneName(), 'x', true, []);
     const playerTwo = createPlayer(getPlayerTwoName(), 'o', false, []);
 
+    let displayPlayerData = {
+        playersH1: [],
+        getPlayersH1: function() {
+            const numOfPlayers = 2;
+            for (let i = 0; i < numOfPlayers; i++) {    
+                const div = document.querySelector(`.player-${i + 1}`);
+                const h1 = div.querySelector('.player-name');
+                this.playersH1.push(h1);
+            }
+            this.displayPlayersName();
+            console.log(this.playersH1);
+        },
+        displayPlayersName: function() {
+            const player1 = 0;
+            const player2 = 1;
+            this.playersH1[player1].innerHTML = playerOne.name;
+            this.playersH1[player2].innerHTML = playerTwo.name;
+        }
+    }
+
     let game = {
         init: function() {
             gameBoard.createBoard();
+            displayPlayerData.getPlayersH1();
             gameBoard.render();
         },
         winningCombos: [['00', '01', '02'],
@@ -129,7 +150,7 @@
     game.init()
 })();
 
-// display player names and symbols
+
 // freeze board when player wins
-// change colors of names and symbols when winner
-    // change winner to name to green and winning three symbols to green
+// change winning three symbols to green
+// when its players turn turn name green

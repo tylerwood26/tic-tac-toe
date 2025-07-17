@@ -10,13 +10,15 @@ body{
   height: 100vh;
   width: 100vw;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding: 20px;
 }
 
 .board-container {
   height: 80vh;
-  width: 80vw;
+  width: 70vw;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr;
@@ -28,4 +30,12 @@ body{
   border: 1px solid black;
   width: 100%;
   height: 100%;
+}
+
+.player-info-container {
+  width: 100vw;
+  height: 20vh;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 }
