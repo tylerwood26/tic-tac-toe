@@ -38,6 +38,13 @@
             const boardCell = document.querySelector(`#cell-${row}${col}`);
             const boardCellH1 = boardCell.querySelector('.cell-h1');
             return boardCellH1;
+        },
+        deleteEventListener: function() {
+            for (let i = 0; i < this.board.length; i++) {
+                for (let j = 0; j < this.board[i].length; j++) {
+                    this.board[i][j].removeEventListener("click", this.cellClicked);
+                }
+            }
         }
     };
     
@@ -147,6 +154,7 @@
             }
         },
         gameOver: function(player) {
+            gameBoard.deleteEventListener();
             if (player === 'Game tied') {
                 displayPlayerData.playerInfoContainer.innerHTML = '<h1>Game is a tie!</h1>';
             } else {
@@ -159,8 +167,9 @@
 })();
 
 // TO DO
-    // freeze board when player wins
-        // remove eventlistener on board cells
     // change winning three symbols to green
+        // get the winning positions from check for winner and turn them green
     // center players symbol in cells
         // make bigger?
+    // clean up code
+        // make variables for each queryselect so i don't keep repeating them
