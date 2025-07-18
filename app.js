@@ -58,6 +58,9 @@
 
     let displayPlayerData = {
         playersH1: [],
+        playerOneDiv: document.querySelector('.player-1'),
+        playerTwoDiv: document.querySelector('.player-2'),
+        playerInfoContainer: document.querySelector('.player-info-container'),
         getPlayersH1: function() {
             const numOfPlayers = 2;
             for (let i = 0; i < numOfPlayers; i++) {    
@@ -66,13 +69,16 @@
                 this.playersH1.push(h1);
             }
             this.displayPlayersName();
-            console.log(this.playersH1);
         },
         displayPlayersName: function() {
             const player1 = 0;
             const player2 = 1;
             this.playersH1[player1].innerHTML = playerOne.name;
             this.playersH1[player2].innerHTML = playerTwo.name;
+        },
+        changePlayerGreen: function() {
+            this.playerOneDiv.classList.toggle('turn-green');
+            this.playerTwoDiv.classList.toggle('turn-green');
         }
     }
 
@@ -128,6 +134,7 @@
                 playerOne.isTurn = true;
                 playerTwo.isTurn = false;
             }
+            displayPlayerData.changePlayerGreen();
         },
         checkIfPositionAvailable: function(row, col, player) {
             const cellH1 = gameBoard.getCellH1(row, col);
@@ -141,16 +148,19 @@
         },
         gameOver: function(player) {
             if (player === 'Game tied') {
-                alert('Game is a tie!');
+                displayPlayerData.playerInfoContainer.innerHTML = '<h1>Game is a tie!</h1>';
             } else {
-                alert(`${player.name} has won!`);
+                // alert(`${player.name} has won!`);
+                displayPlayerData.playerInfoContainer.innerHTML =  `<h1 class="turn-green">${player.name} has won!</h1>`;
             }
         }
     }
     game.init()
 })();
 
-
-// freeze board when player wins
-// change winning three symbols to green
-// when its players turn turn name green
+// TO DO
+    // freeze board when player wins
+        // remove eventlistener on board cells
+    // change winning three symbols to green
+    // center players symbol in cells
+        // make bigger?

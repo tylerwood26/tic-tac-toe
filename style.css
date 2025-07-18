@@ -39,3 +39,11 @@ body{
   justify-content: space-around;
   align-items: center;
 }
+
+.turn-green {
+  color: green;
+}
+
+.turn-black {
+  color: black;
+}
