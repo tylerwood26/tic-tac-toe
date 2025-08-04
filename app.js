@@ -91,14 +91,19 @@
 
     let buttons = {
         startButton: document.querySelector('.start-btn'),
-        whenButtonClicked: function() {
+        restartButton: document.querySelector('.restart-btn'),
+        startButtonClicked: function() {
             game.init()
         },
-        hideButton: function() {
-            this.startButton.hidden = true;
+        hideButton: function(button) {
+            button.hidden = true;
+        },
+        showButton: function(button) {
+            button.hidden = false;
         },
         init: function() {
-            this.startButton.addEventListener('click', this.whenButtonClicked);
+            this.startButton.addEventListener('click', this.startButtonClicked);
+            this.hideButton(this.restartButton);
         }
     }
 
@@ -107,7 +112,7 @@
             gameBoard.createBoard();
             displayPlayerData.getPlayersH1();
             gameBoard.render();
-            buttons.hideButton()
+            buttons.hideButton(buttons.startButton)
         },
         winningCombos: [['00', '01', '02'],
                         ['10', '11', '12'],
@@ -169,6 +174,7 @@
         },
         gameOver: function(player) {
             gameBoard.deleteEventListener();
+            buttons.showButton(buttons.restartButton);
             if (player === 'Game tied') {
                 displayPlayerData.playerInfoContainer.innerHTML = '<h1>Game is a tie!</h1>';
             } else {
@@ -183,13 +189,4 @@
 // TO DO
     // center players symbol in cells
         // make bigger?
-    // start / restart button
-        // restart button
-            // create button
-            // hide button
-            // button displays on gameover
-            // when button pressed
-                // clear board
-                // game.init
-    // hide x and o symbol until start button pressed
             
