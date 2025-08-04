@@ -89,11 +89,25 @@
         }
     }
 
+    let buttons = {
+        startButton: document.querySelector('.start-btn'),
+        whenButtonClicked: function() {
+            game.init()
+        },
+        hideButton: function() {
+            this.startButton.hidden = true;
+        },
+        init: function() {
+            this.startButton.addEventListener('click', this.whenButtonClicked);
+        }
+    }
+
     let game = {
         init: function() {
             gameBoard.createBoard();
             displayPlayerData.getPlayersH1();
             gameBoard.render();
+            buttons.hideButton()
         },
         winningCombos: [['00', '01', '02'],
                         ['10', '11', '12'],
@@ -163,13 +177,19 @@
             }
         }
     }
-    game.init()
+    buttons.init()
 })();
 
 // TO DO
-    // change winning three symbols to green
-        // get the winning positions from check for winner and turn them green
     // center players symbol in cells
         // make bigger?
-    // clean up code
-        // make variables for each queryselect so i don't keep repeating them
+    // start / restart button
+        // restart button
+            // create button
+            // hide button
+            // button displays on gameover
+            // when button pressed
+                // clear board
+                // game.init
+    // hide x and o symbol until start button pressed
+            
