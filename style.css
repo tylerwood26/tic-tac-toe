@@ -47,3 +47,13 @@ body{
 .turn-black {
   color: black;
 }
+
+.game-cell {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.game-cell h1 {
+  font-size: 100px;
+}

@@ -178,15 +178,10 @@
             if (player === 'Game tied') {
                 displayPlayerData.playerInfoContainer.innerHTML = '<h1>Game is a tie!</h1>';
             } else {
-                // alert(`${player.name} has won!`);
                 displayPlayerData.playerInfoContainer.innerHTML =  `<h1 class="turn-green">${player.name} has won!</h1>`;
             }
         }
     }
     buttons.init()
 })();
-
-// TO DO
-    // center players symbol in cells
-        // make bigger?
             
